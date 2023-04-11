@@ -6,6 +6,7 @@ tomorrowTemp: string | number
 tomorrowIcon: string
 next_Weather:string
 tomorrowWeatherDesc:string
+
 }
 
 export default function Nextweather(props:nextweatherprops) {
@@ -13,7 +14,7 @@ export default function Nextweather(props:nextweatherprops) {
 tomorrow.setDate(tomorrow.getDate() + 1);
 
   return (
-    <div className="nextweather"> 
+    <div className={"nextweather"}> 
     <div className="tomorrowdatediv">
       <p className="tomorrowdate"> {tomorrow.toString().split(" ").slice(0,3).join(" ")} </p>
       <p className="tomorrowdate2"> {tomorrow.toString().split(" ").slice(1,3).join(" ")} </p>
