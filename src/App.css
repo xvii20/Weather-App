@@ -286,6 +286,12 @@ box-shadow: -2px -2px 40px black;
 
 }
 
+.header{display:flex;
+justify-content: center;
+color:white;
+font-size:30px;
+margin-top: 20px;}
+
 .countrynamediv{
 display: flex;
 justify-content: center;
