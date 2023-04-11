@@ -96,10 +96,15 @@ let tomorrow = new Date()
 tomorrow.setDate(tomorrow.getDate() + 1);
 
   return (
+
     <div className="mainweathercontainer">
-{props.loading?  <div className="loadingdiv"> <img src={require("../images/Ripple.gif")} className="loadingimage"/>  
-<h1 className="cssanimation leSnake random loading"> Loading...</h1>
-</div> : 
+
+
+{props.loading? <> <div className="loadingdiv"> <img src={require("../images/Ripple.gif")} className="loadingimage"/>  
+</div>
+<div className="loadingdiv2"> <h1 className="loading cssanimation leFadeIn random"> Loading...</h1> </div>
+</>
+ : 
 <>
 <div className="weathertodaycontainerparent cssanimation fadeIn ">
   <div className={ props.city? " weathertodaycontainer"  : "brokenweathertodaycontainer"   }> 
@@ -159,7 +164,7 @@ tomorrow.setDate(tomorrow.getDate() + 1);
 </div>
 : ""}
 
-<div className={props.city? "customeffectminiweathercontainer cssanimation fadeInLeft ": "miniweathercontainer"} >
+<div className={props.city? "customeffectminiweathercontainer cssanimation blurInRight ": "miniweathercontainer cssanimation blurOut"} >
 {loadmore? "": <Nextweather tomorrowWeatherDesc={props.tomorrowWeatherDesc} country={props.country} tomorrowTemp={props.tomorrowTemp} next_Weather={props.next_Weather} tomorrowIcon={props.tomorrowIcon}/> }
  {loadmore? "":<Nextweathertwo twoDayWeatherDesc={props.twoDayWeatherDesc} twoDayIcon={props.twoDayIcon} twoDayTemp={props.twoDayTemp} twoDayWeather={props.twoDayWeather} country={props.country}/> }
   <Nextweatherthree threeDayWeatherDesc={props.threeDayWeatherDesc} country={props.country} threeDayWeather={props.threeDayWeather} threeDayTemp={props.threeDayTemp} threeDayIcon={props.threeDayIcon}/>
@@ -169,6 +174,8 @@ tomorrow.setDate(tomorrow.getDate() + 1);
         </>
         
         } 
+
+
 
 
     </div>

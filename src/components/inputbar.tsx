@@ -165,11 +165,11 @@ props.setFiveDayWeatherDesc(weatherData.data.list[39].dt_txt.split(" ").slice(1)
         
 
   return (
-    <div className="inputbarcontainer">
+    <div className="inputbarcontainer cssanimation blurIn">
         <div className="innerinputbarcontainer">
             <input className="input"
             type="text"
-            placeholder="Enter a City to Get Weather Data"
+            placeholder="Enter a City"
             ref={inputRef}
             onChange={handleInput}
             />
