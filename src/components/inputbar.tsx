@@ -1,50 +1,51 @@
 import axios from 'axios'
 import React from 'react'
-import { useEffect, useRef,useState } from 'react'
+import { useEffect, useRef,useState, Dispatch, SetStateAction } from 'react'
 
 export type eventProp = {
-  lat?: number | string,
-  setLat: Function,
-  lon?:number | string,
-  setLon: Function
-  setWeatherDescription:Function
-  setTime:Function
-  setDate:Function
-  setCountry: Function
-  setCity: Function
-  setMain: Function
-  setTemperature: Function
-  setHumidity: Function
-  setLoading: Function
-  setNext_Weather: Function
-  setIcon: Function
-  setTomorrowIcon:Function
-  setTomorrowTemp: Function
-  setTwoDayTemp: Function
-  setTwoDayIcon: Function
-  setTwoDayWeather: Function
-  setThreeDayTemp: Function
-  setThreeDayIcon: Function
-  setThreeDayWeather: Function
+  lat?: Dispatch<SetStateAction<string>>,
+  setLat: Dispatch<SetStateAction<string>>,
+  lon?: Dispatch<SetStateAction<string>>,
+  setLon: Dispatch<SetStateAction<string>>
+  setWeatherDescription: Dispatch<SetStateAction<string>>
+  setTime:Dispatch<SetStateAction<string>>
+  setDate:Dispatch<SetStateAction<string>>
+  setCountry:  Dispatch<SetStateAction<string>>
+  setCity: Dispatch<SetStateAction<string>>
+  setMain: Dispatch<SetStateAction<string>>
+  setTemperature: Dispatch<SetStateAction<string>>
+  setHumidity: Dispatch<SetStateAction<string>>
+  setLoading: Dispatch<SetStateAction<boolean>>
+  setNext_Weather: Dispatch<SetStateAction<string>>
+  setIcon: Dispatch<SetStateAction<string>>
+  setTomorrowIcon:Dispatch<SetStateAction<string>>
+  setTomorrowTemp: Dispatch<SetStateAction<string>>
+  setTwoDayTemp: Dispatch<SetStateAction<string>>
+  setTwoDayIcon: Dispatch<SetStateAction<string>>
+  setTwoDayWeather: Dispatch<SetStateAction<string>>
+  setThreeDayTemp: Dispatch<SetStateAction<string>>
+  setThreeDayIcon: Dispatch<SetStateAction<string>>
+  setThreeDayWeather: Dispatch<SetStateAction<string>>
 
-  setTomorrowWeatherDesc:Function
-  setTwoDayWeatherDesc:Function 
-  setThreeDayWeatherDesc:Function
-  setFetchSuccess:Function
-  setWindSpeed: Function
+  setTomorrowWeatherDesc:Dispatch<SetStateAction<string>>
+  setTwoDayWeatherDesc:Dispatch<SetStateAction<string>>
+  setThreeDayWeatherDesc:Dispatch<SetStateAction<string>>
+  setFetchSuccess:Dispatch<SetStateAction<boolean>>
+  setWindSpeed: Dispatch<SetStateAction<string>>
 
-setFourDayWeather:Function
-setFourDayIcon:Function
-setFourDayTemp:Function
-setFourDayWeatherDesc:Function
-setFiveDayWeather:Function
-setFiveDayIcon:Function
-setFiveDayTemp:Function
-setFiveDayWeatherDesc:Function
+setFourDayWeather:Dispatch<SetStateAction<string>>
+setFourDayIcon:Dispatch<SetStateAction<string>>
+setFourDayTemp:Dispatch<SetStateAction<string>>
+setFourDayWeatherDesc:Dispatch<SetStateAction<string>>
+setFiveDayWeather:Dispatch<SetStateAction<string>>
+setFiveDayIcon:Dispatch<SetStateAction<string>>
+setFiveDayTemp:Dispatch<SetStateAction<string>>
+setFiveDayWeatherDesc:Dispatch<SetStateAction<string>>
 
-setFiveDayWeatherDesctwo:Function
+setFiveDayWeatherDesctwo:Dispatch<SetStateAction<string>>
+
+setRemoveDate:Dispatch<SetStateAction<boolean>>
 };    
-
 
 export function Inputbar(props:eventProp ) {
   let [inputValue,setInputValue] = useState("")
@@ -153,7 +154,7 @@ getdate.toLocaleDateString('default', { weekday: 'long', year: 'numeric', month:
 props.setFiveDayWeatherDesc(weatherData.data.list[39].dt_txt.split(" ").slice(1).join(" "))  // time
 
       props.setFetchSuccess(true)
-    
+        props.setRemoveDate(true)
     if (inputValue == "berlin"){props.setCity("Berlin")}
       props.setLoading(false)
       }
