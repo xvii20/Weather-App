@@ -90,7 +90,7 @@ console.log(response2)
         props.setLon(todaybetterdata.data.coord.lon.toString())
         props.setHumidity(todaybetterdata.data.main.humidity)
 
-        props.setWindSpeed(todaybetterdata.data.wind.speed)
+        props.setWindSpeed(parseInt(todaybetterdata.data.wind.speed)* 3.6) 
 
         props.setCity(todaybetterdata.data.name)
 
