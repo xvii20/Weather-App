@@ -6,12 +6,8 @@ import Nextweatherthree from './nextweatherthree'
 import Nextweathertwo from './nextweathertwo'
 import Nextweatherfour from './nextweatherfour'
 import Nextweatherfive from './nextweatherfive'
-import CircleComponent from './circleload'
 import ArrowComponent from './arrowload'
-import {useState, useEffect} from "react"
-import React from 'react';
-
-
+import {useState, useEffect,SetStateAction, Dispatch} from "react"
 
 type weatherDataProps = {
 lat: string
@@ -50,7 +46,7 @@ fiveDayIcon:string
 fiveDayTemp:string
 fiveDayWeatherDesc:string
 
-setFiveDayWeatherDesc: Function
+setFiveDayWeatherDesc: Dispatch<SetStateAction<string>>
 fiveDayWeatherDesctwo:string
 }
 
