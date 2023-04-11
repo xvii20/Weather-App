@@ -64,8 +64,7 @@ let [getmouse, setgetmouse] = useState(false)
 let [getwidth,setgetwidth] = useState(window.innerWidth)
 let [getheight,setgetheight] = useState(window.innerHeight)
 
-// here we are just creating a function where we set the innerheight and innerwidth based on the window screen size, so we can pass this function into use effect. and useeffect will call this function
-// evrrytime the windowscreen soze changes
+
 function detectWidthandHeight(){setgetwidth(window.innerWidth)
 setgetheight(window.innerHeight)
 if(window.innerWidth > 522 && loadmore==true){setloadmore(false)
@@ -81,7 +80,6 @@ setgetfetch(false)}
 useEffect(() =>{
   window.addEventListener("resize",detectWidthandHeight)
 
-  //here we create a cleanup function, so we can remove this event listener 
   return function (){
     window.removeEventListener("resize",detectWidthandHeight)
     
