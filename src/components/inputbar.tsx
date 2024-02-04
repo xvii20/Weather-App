@@ -47,7 +47,6 @@ setFiveDayWeatherDesctwo:Dispatch<SetStateAction<string>>
 setRemoveDate:Dispatch<SetStateAction<boolean>>
 };    
 
-
 export function Inputbar(props:eventProp ) {
   let [inputValue,setInputValue] = useState("")
     const inputRef = useRef<HTMLInputElement>(null)
@@ -155,8 +154,9 @@ getdate.toLocaleDateString('default', { weekday: 'long', year: 'numeric', month:
 props.setFiveDayWeatherDesc(weatherData.data.list[39].dt_txt.split(" ").slice(1).join(" "))  // time
 
       props.setFetchSuccess(true)
-    props.setRemoveDate(true)
-    
+
+        props.setRemoveDate(true)
+
     if (inputValue == "berlin"){props.setCity("Berlin")}
       props.setLoading(false)
       }
