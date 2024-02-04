@@ -99,7 +99,7 @@ console.log(response2)
         `https://api.openweathermap.org/data/2.5/forecast?lat=${templat}&lon=${templon}&appid=${process.env.REACT_APP_API_KEY}&units=metric`
       );
 
-      console.log(weatherData);
+      // console.log(weatherData);
       props.setMain(weatherData.data.list[0].weather[0].main);
       // console.log(weatherData)
       // console.log(weatherData.data.city.country)  // returns the correct country
