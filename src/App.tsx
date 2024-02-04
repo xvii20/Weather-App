@@ -25,7 +25,7 @@ let [weatherDescription,setWeatherDescription] = useState<string>("") // data.we
 let [temperature,setTemperature] = useState<string>("")
 let [main,setMain] = useState<string>("")
 let [humidity, setHumidity] =useState<string>("")
-let [windSpeed,setWindSpeed] = useState<string>("")
+let [windSpeed,setWindSpeed] = useState<string | number>("")
 let [icon, setIcon] = useState<string>("")
 let [fetchSuccess, setFetchSuccess] = useState<boolean>(false)
 
@@ -68,10 +68,10 @@ let [removeanim,setremoveanim] = useState<boolean>(false)
 
 
 let getdate = new Date()
-console.log(getdate.toLocaleDateString("default", {day:"numeric", month:"long", year:"numeric"}))
+console.log(getdate.toLocaleDateString("default", {day:"numeric", month:"long", year:"numeric"}))  
   return (
     <div className="App">
- { removeDate==false? <div className="header"> <h1 className="cssanimation leFadeIn random headerwords"> {getdate.toLocaleDateString("default", {weekday:"long", day:"numeric", month:"long", year:"numeric"})} </h1></div> :  ""}
+ { removeDate==false? <div className="header cssanimation blurIn"> <h1 className="headerwords cssanimation leFadeInLeft random"> {getdate.toLocaleDateString("default", {weekday:"long", day:"numeric", month:"long", year:"numeric"})} </h1></div> :  ""}
       <Inputbar setRemoveDate={setRemoveDate} setFiveDayWeatherDesctwo={setFiveDayWeatherDesctwo} setFiveDayWeather={setFiveDayWeather} setFiveDayIcon={setFiveDayIcon} setFiveDayTemp={setFiveDayTemp} setFiveDayWeatherDesc={setFiveDayWeatherDesc} setFourDayIcon={setFourDayIcon} setFourDayWeather={setFourDayWeather} setFourDayTemp={setFourDayTemp} setFourDayWeatherDesc={setFourDayWeatherDesc} setWindSpeed={setWindSpeed} setThreeDayWeatherDesc={setThreeDayWeatherDesc} setTwoDayWeatherDesc={setTwoDayWeatherDesc} setTomorrowWeatherDesc={setTomorrowWeatherDesc}setLat={setLat} setLon={setLon} setWeatherDescription={setWeatherDescription} setTime={setTime} setDate={setDate} setCountry={setCountry} setCity={setCity} setTemperature={setTemperature} setMain={setMain} setHumidity={setHumidity} setLoading={setLoading} setNext_Weather={setNext_Weather} setIcon={setIcon} setTomorrowIcon={setTomorrowIcon} setTomorrowTemp={setTomorrowTemp} setTwoDayIcon={setTwoDayIcon} setTwoDayTemp={setTwoDayTemp} setTwoDayWeather={setTwoDayWeather} setThreeDayIcon={setThreeDayIcon} setThreeDayTemp={setThreeDayTemp} setThreeDayWeather={setThreeDayWeather}  setFetchSuccess={setFetchSuccess}/> 
 
       <WeatherUiToday   fiveDayWeatherDesctwo={fiveDayWeatherDesctwo} setFiveDayWeatherDesc={setFiveDayWeatherDesc} fourDayWeather={fourDayWeather} fourDayIcon={fourDayIcon} fourDayTemp={fourDayTemp} fourDayWeatherDesc={fourDayWeatherDesc} fiveDayWeather={fiveDayWeather} fiveDayIcon={fiveDayIcon} fiveDayWeatherDesc={fiveDayWeatherDesc} fiveDayTemp={fiveDayTemp}  humidity={humidity} windSpeed={windSpeed} fetchSuccess={fetchSuccess} tomorrowWeatherDesc={tomorrowWeatherDesc} twoDayWeatherDesc={twoDayWeatherDesc} threeDayWeatherDesc={threeDayWeatherDesc} lat={lat} lon={lon} city={city} country={country} weatherDescription={weatherDescription} temperature={temperature} main={main} loading={loading} next_Weather={next_Weather} icon={icon} tomorrowIcon={tomorrowIcon} tomorrowTemp={tomorrowTemp} twoDayIcon={twoDayIcon} twoDayTemp={twoDayTemp} twoDayWeather={twoDayWeather} threeDayIcon={threeDayIcon} threeDayTemp={threeDayTemp} threeDayWeather={threeDayWeather}/>

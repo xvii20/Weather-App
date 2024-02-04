@@ -34,7 +34,7 @@ threeDayWeatherDesc:string
 twoDayWeatherDesc:string
 tomorrowWeatherDesc:string 
 fetchSuccess:boolean
-windSpeed: string
+windSpeed: string | number
 humidity:string
 
 fourDayWeather:string

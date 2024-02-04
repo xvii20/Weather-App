@@ -31,7 +31,7 @@ export type eventProp = {
   setTwoDayWeatherDesc:Dispatch<SetStateAction<string>>
   setThreeDayWeatherDesc:Dispatch<SetStateAction<string>>
   setFetchSuccess:Dispatch<SetStateAction<boolean>>
-  setWindSpeed: Dispatch<SetStateAction<string>>
+  setWindSpeed: Dispatch<SetStateAction<string | number>>
 
 setFourDayWeather:Dispatch<SetStateAction<string>>
 setFourDayIcon:Dispatch<SetStateAction<string>>
@@ -90,15 +90,15 @@ console.log(response2)
          props.setLat(todaybetterdata.data.coord.lat.toString())
         props.setLon(todaybetterdata.data.coord.lon.toString())
         props.setHumidity(todaybetterdata.data.main.humidity)
-
-        props.setWindSpeed(todaybetterdata.data.wind.speed)
+// console.log(todaybetterdata)
+        props.setWindSpeed(parseInt(todaybetterdata.data.wind.speed)* 3.6) 
 
         props.setCity(todaybetterdata.data.name)
 
         // this fetches data fpr weather up to 5 days in advance
         let weatherData = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${templat}&lon=${templon}&appid=${process.env.REACT_APP_API_KEY}&units=metric`)
 
-
+// console.log(weatherData)
 
           // console.log(weatherData) 
          // console.log(weatherData.data.city.country)  // returns the correct country
