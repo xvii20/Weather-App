@@ -65,13 +65,13 @@ function App() {
   let [removeanim, setremoveanim] = useState<boolean>(false);
 
   let getdate = new Date();
-  console.log(
-    getdate.toLocaleDateString('default', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    })
-  );
+
+  getdate.toLocaleDateString('default', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+
   return (
     <div className="App">
       {removeDate == false ? (
