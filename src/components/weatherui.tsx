@@ -7,6 +7,18 @@ import Nextweatherfour from './nextweatherfour';
 import Nextweatherfive from './nextweatherfive';
 import ArrowComponent from './arrowload';
 import { useState, useEffect, SetStateAction, Dispatch } from 'react';
+import {
+  Stack,
+  Typography,
+  TextField,
+  Box,
+  IconButton,
+  Button,
+  InputAdornment,
+} from '@mui/material';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
 type weatherDataProps = {
   lat: string;
@@ -47,6 +59,8 @@ type weatherDataProps = {
 
   setFiveDayWeatherDesc: Dispatch<SetStateAction<string>>;
   fiveDayWeatherDesctwo: string;
+  alertOpen: boolean;
+  setAlertOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 export default function WeatherUiToday(props: weatherDataProps) {

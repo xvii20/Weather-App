@@ -1,6 +1,19 @@
 import axios from 'axios';
 import React from 'react';
 import { useEffect, useRef, useState, Dispatch, SetStateAction } from 'react';
+import {
+  Stack,
+  Typography,
+  TextField,
+  Box,
+  IconButton,
+  Button,
+  InputAdornment,
+} from '@mui/material';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 
 export type eventProp = {
   lat?: Dispatch<SetStateAction<string>>;
@@ -45,6 +58,8 @@ export type eventProp = {
   setFiveDayWeatherDesctwo: Dispatch<SetStateAction<string>>;
 
   setRemoveDate: Dispatch<SetStateAction<boolean>>;
+  alertOpen: boolean;
+  setAlertOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 export function Inputbar(props: eventProp) {
@@ -58,6 +73,11 @@ export function Inputbar(props: eventProp) {
   function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
     setInputValue(e.target.value.toLowerCase());
   }
+
+  // closes the mui alert
+  const handleClose = () => {
+    props.setAlertOpen(false);
+  };
 
   async function fetchData() {
     try {
@@ -81,6 +101,7 @@ console.log(response2)
       let todaybetterdata = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&APPID=${process.env.REACT_APP_API_KEY}`
       );
+
       //      console.log(todaybetterdata);
       //  console.log(todaybetterdata.data.weather[0].main)  // returns the main weather (ex: Rain)
       // props.setMain(todaybetterdata.data.weather[0].main);
@@ -189,23 +210,108 @@ console.log(response2)
       }
       props.setLoading(false);
     } catch (err) {
-      props.setLoading(false);
-      alert(`Sorry we cannot get weather data for location: ${inputValue}`);
+      //  alert(`Sorry we cannot get weather data for location: ${inputValue}`);
+
+      console.log('uh ohh');
+      props.setAlertOpen(true);
+      props.setLoading(false); // set to true to add more styling
     }
   }
-
+  // cssanimation blurIn
   return (
-    <div className="inputbarcontainer cssanimation blurIn">
-      <div className="innerinputbarcontainer">
-        <input
+    <>
+      {/* <Snackbar
+        open={alertOpen}
+        // autoHideDuration={6000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        sx={{ zIndex: 9999 }} // Set zIndex to a numerical value
+      >
+        <MuiAlert
+          onClose={handleClose}
+          severity="error"
+          sx={{
+            textAlign: 'center',
+            '.MuiAlert-action': {
+              padding: '0px', // Adjust padding
+
+              border: 'none',
+            },
+          }}
+        >
+          <AlertTitle>Error</AlertTitle>
+          {`Sorry we cannot get weather data for location: ${inputValue}`}
+        </MuiAlert>
+      </Snackbar> */}
+
+      <div className="inputbarcontainer ">
+        <div className="innerinputbarcontainer">
+          {/* <input
           className="input"
           type="text"
           placeholder="Enter a City"
           ref={inputRef}
           onChange={handleInput}
-        />
-        {inputValue ? <button onClick={fetchData}> Search </button> : ''}
+        /> */}
+          <TextField
+            type="text"
+            label="Enter a City"
+            ref={inputRef}
+            onChange={handleInput}
+            size="small"
+            sx={{
+              backgroundColor: 'white',
+              borderRadius: '4px',
+
+              // '&:hover fieldset': {
+              //   outline: 'pink', // Change this to your desired hover outline color
+              // },
+              // '&:focus fieldset': {
+              //   outline: 'pink', // Change this to your desired focus outline color
+              // },
+              // '& label': {
+              //   color: 'black', // Change this to your desired label color
+              // },
+              '& label.Mui-focused': {
+                color: 'black', // Change this to your desired focused label color
+              },
+            }}
+            InputProps={{
+              sx: {
+                '& fieldset': { border: 'none' },
+              },
+              // startAdornment: (
+              //   <InputAdornment position="start">
+              //     {' '}
+              //     <SearchRoundedIcon />{' '}
+              //   </InputAdornment>
+              // ),
+            }}
+          ></TextField>
+          {inputValue ? (
+            <Button
+              onClick={fetchData}
+              sx={{
+                marginLeft: '10px',
+                marginTop: '1px',
+                backgroundColor: 'black',
+                color: '#fdfdfd',
+                height: '37px',
+                width: '100px',
+                '&:hover': {
+                  backgroundColor: '#333333',
+                },
+              }}
+            >
+              {' '}
+              <Typography variant="body2"> Search </Typography>{' '}
+            </Button>
+          ) : (
+            ''
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
+// <button onClick={fetchData}> Search </button>

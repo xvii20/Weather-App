@@ -3,6 +3,10 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import WeatherUiToday from './components/weatherui';
 import { Inputbar } from './components/inputbar';
+import { Box, CircularProgress, Stack } from '@mui/material';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
 // import { eventProp } from './components/inputbar';
 
@@ -64,6 +68,8 @@ function App() {
   /* after 3 seconds */
   let [removeanim, setremoveanim] = useState<boolean>(false);
 
+  const [alertOpen, setAlertOpen] = useState(false);
+
   let getdate = new Date();
 
   getdate.toLocaleDateString('default', {
@@ -72,12 +78,57 @@ function App() {
     year: 'numeric',
   });
 
+  // If isLoading is true, render a loading component
+  if (loading) {
+    return (
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+        }}
+      >
+        <CircularProgress color="primary" />
+      </Box>
+    );
+  }
+
+  // closes the mui alert
+  const handleClose = () => {
+    setAlertOpen(false);
+  };
+
   return (
     <div className="App">
+      <Snackbar
+        open={alertOpen}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        sx={{ zIndex: 9999 }} // Set zIndex to a numerical value
+      >
+        <MuiAlert
+          onClose={handleClose}
+          severity="error"
+          sx={{
+            textAlign: 'center',
+            '.MuiAlert-action': {
+              padding: '0px', // Adjust padding
+
+              border: 'none',
+            },
+          }}
+        >
+          <AlertTitle>Error</AlertTitle>
+          {`Sorry we cannot get weather data for the given location`}
+        </MuiAlert>
+      </Snackbar>
+
       {removeDate == false ? (
         <div className="header cssanimation blurIn">
           {' '}
-          <h1 className="headerwords cssanimation leFadeInLeft random">
+          <h1 className="headerwords ">
             {' '}
             {getdate.toLocaleDateString('default', {
               weekday: 'long',
@@ -127,6 +178,8 @@ function App() {
         setThreeDayTemp={setThreeDayTemp}
         setThreeDayWeather={setThreeDayWeather}
         setFetchSuccess={setFetchSuccess}
+        alertOpen={alertOpen}
+        setAlertOpen={setAlertOpen}
       />
 
       <WeatherUiToday
@@ -164,6 +217,8 @@ function App() {
         threeDayIcon={threeDayIcon}
         threeDayTemp={threeDayTemp}
         threeDayWeather={threeDayWeather}
+        alertOpen={alertOpen}
+        setAlertOpen={setAlertOpen}
       />
     </div>
   );
