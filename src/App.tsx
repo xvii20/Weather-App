@@ -106,7 +106,7 @@ function App() {
         autoHideDuration={6000}
         onClose={handleClose}
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        sx={{ zIndex: 9999 }} // Set zIndex to a numerical value
+        sx={{ zIndex: 9999 }}
       >
         <MuiAlert
           onClose={handleClose}

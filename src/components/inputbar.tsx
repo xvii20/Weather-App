@@ -67,7 +67,7 @@ export function Inputbar(props: eventProp) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    inputRef.current?.focus(); // Typescript error occurs here, to fix just put a question mark after current
+    inputRef.current?.focus();
   }, []);
 
   function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
@@ -214,7 +214,7 @@ console.log(response2)
 
       console.log('uh ohh');
       props.setAlertOpen(true);
-      props.setLoading(false); // set to true to add more styling
+      props.setLoading(false);
     }
   }
   // cssanimation blurIn
@@ -263,17 +263,8 @@ console.log(response2)
               backgroundColor: 'white',
               borderRadius: '4px',
 
-              // '&:hover fieldset': {
-              //   outline: 'pink', // Change this to your desired hover outline color
-              // },
-              // '&:focus fieldset': {
-              //   outline: 'pink', // Change this to your desired focus outline color
-              // },
-              // '& label': {
-              //   color: 'black', // Change this to your desired label color
-              // },
               '& label.Mui-focused': {
-                color: 'black', // Change this to your desired focused label color
+                color: 'black',
               },
             }}
             InputProps={{
